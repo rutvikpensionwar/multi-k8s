@@ -1,0 +1,23 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t rutvikpensionwar/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run rutvikpensionwar/react-test npm run test -- --coverage
+
+after_success:
+  - docker build -t rutvikpensionwar/multi-client ./client
+  - docker build -t rutvikpensionwar/multi-nginx ./nginx
+  - docker build -t rutvikpensionwar/multi-server ./server
+  - docker build -t rutvikpensionwar/multi-worker ./worker
+  # Log in to the Docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  # Take those images and push them to Docker Hub
+  - docker push rutvikpensionwar/multi-client
+  - docker push rutvikpensionwar/multi-nginx
+  - docker push rutvikpensionwar/multi-server
+  - docker push rutvikpensionwar/multi-worker
