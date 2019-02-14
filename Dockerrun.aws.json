@@ -1,0 +1,39 @@
+{
+	"AWSEBDockerrunVersion": 2,
+	"containerDefinitions": [
+		{
+			"name": "client",
+			"image": "rutvikpensionwar/multi-client",
+			"hostname": "client",
+			"essectial": false
+		},
+		{
+			"name": "server",
+			"image": "rutvikpensionwar/multi-server",
+			"hostname": "api",
+			"essectial": false
+		},
+		{
+			"name": "worker",
+			"image": "rutvikpensionwar/multi-worker",
+			"hostname": "worker",
+			"essectial": false
+		},
+		{
+			"name": "nginx",
+			"image": "rutvikpensionwar/multi-nginx",
+			"hostname": "nginx",
+			"essectial": true,
+			"postMappings": [
+				{
+					"hostPort": 80,
+					"containerPost": 80
+				}
+			],
+			"links": [
+				"client",
+				"server"
+			]
+		}
+	]
+}

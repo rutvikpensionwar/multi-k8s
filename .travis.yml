@@ -21,3 +21,16 @@ after_success:
   - docker push rutvikpensionwar/multi-nginx
   - docker push rutvikpensionwar/multi-server
   - docker push rutvikpensionwar/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: multi-docker
+  emv: MultiDocker-env
+  bucket_name: elasticbeanstalk-us-west-2-271678594677
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
