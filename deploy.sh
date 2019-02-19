@@ -10,6 +10,6 @@ docker push rutvikpensionwar/multi-server:$SHA
 docker push rutvikpensionwar/multi-worker:$SHA
 
 kubectl apply -f k8s
-kubectl set image deployments/client-deployment client=rutvikpensionwar/multi-client:$SHA
 kubectl set image deployments/server-deployment server=rutvikpensionwar/multi-server:$SHA
+kubectl set image deployments/client-deployment client=rutvikpensionwar/multi-client:$SHA
 kubectl set image deployments/worker-deployment worker=rutvikpensionwar/multi-worker:$SHA
