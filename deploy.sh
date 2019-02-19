@@ -2,8 +2,8 @@ docker build -t rutvikpensionwar/multi-client:latest -t rutvikpensionwar/multi-c
 docker build -t rutvikpensionwar/multi-server:latest -t rutvikpensionwar/multi-server:$SHA -f ./server/Dockerfile ./server
 docker build -t rutvikpensionwar/multi-worker:latest -t rutvikpensionwar/multi-worker:$SHA -f ./worker/Dockerfile ./worker
 docker push rutvikpensionwar/multi-client:latest
-docker push rutvikpensionwar/multi-server
-docker push rutvikpensionwar/multi-worker
+docker push rutvikpensionwar/multi-server:latest
+docker push rutvikpensionwar/multi-worker:latest
 
 docker push rutvikpensionwar/multi-client:$SHA
 docker push rutvikpensionwar/multi-server:$SHA
